@@ -10,6 +10,7 @@ const Routes = () => (
             exact
             path="/"
             component={ Search }
+            // component={ Product }
         />
         <Route 
             exact

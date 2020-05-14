@@ -1,0 +1,23 @@
+.product {
+    display: flex;
+    justify-content: center;
+}
+
+.product-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image {
+    display: flex;
+}
+
+.product-image img {
+    float: left;
+    height: 634px;
+    width: 634px;
+}
+
+.btn-cart {
+    margin: 1rem;
+}
