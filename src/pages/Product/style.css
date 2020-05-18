@@ -1,23 +1,19 @@
-.product {
+.page-product .container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    margin: 30px auto;
 }
 
-.product-detail {
-    display: flex;
-    flex-direction: column;
+.page-product .container .content {
+    padding: 50px 20px;
 }
 
-.product-image {
-    display: flex;
+.page-product .title {
+    margin: 0 auto 20px;
+    width: 70%;
 }
 
-.product-image img {
-    float: left;
-    height: 634px;
-    width: 634px;
-}
-
-.btn-cart {
-    margin: 1rem;
+.page-product .price {
+    font-size: 20px;
+    margin-bottom: 20px;
 }
