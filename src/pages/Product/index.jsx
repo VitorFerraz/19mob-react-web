@@ -1,43 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Loading from '../../components/Loading/index';
+import Loading from '../../components/Loading';
 
 import Content from './components/Content';
 
 import './style.css';
 
-class Product extends React.Component {
-    constructor(props) {
-        super(props);
+const Product = (props) => {
+    const [id] = useState(props.match.params.id);
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
 
-        this.state = {
-            id: props.match.params.id,
-            loading: true,
-            data: null,
-        }
-    }
+    useEffect(() => {
+        axios.get(`https://api.mercadolibre.com/items/${id}`)
+            .then(({ data: resData }) => {
+                setData(resData);
+                setLoading(false);
+            });
+    }, []);
 
-    componentDidMount() {
-        axios.get(`https://api.mercadolibre.com/items/${this.state.id}`)
-            .then(({ data }) => {
-                this.setState({ data, loading: false });
-            })
-    }
-
-    renderContent() {
-        const { thumbnail, title, price } = this.state.data;
+    const renderContent = () => {
+        const { thumbnail, title, price } = data;
         return <Content thumbnail={ thumbnail } title={ title } price={ price } />;
     }
 
-    render() {
-        const { data, loading } = this.state;
-
-        return (<div className="page-product">
+    return (
+        <div className="page-product">
             <Loading show={ loading } />
-            { data && this.renderContent() }
-        </div>);
-    }
+            { data && renderContent() }
+        </div>
+    )
 }
 
 export default Product;
